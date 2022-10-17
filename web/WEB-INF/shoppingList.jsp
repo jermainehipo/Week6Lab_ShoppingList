@@ -11,14 +11,16 @@
         Hello, ${username} <a href="">Logout</a>
         <h2>List</h2>
         <form method="post" action="ShoppingList">
-        Add item: <input type="text" value="${item}">
+        Add item: <input type="text" value="${itemtoadd}">
         <input type="submit" value="Add">
         </form>
         
-        <c:forEach var="item" items="${list}">
-            
-            <input type='radio' name='shoppinglist' value='${item}'>${item}<br>
-        </c:forEach>
-            
+        <form>
+            <c:forEach var="item" items="${items}">
+                <input type="radio" name="itemsinlist">
+                <c:out value="${item}" /><br>
+            </c:forEach>
+            <input type="submit" value="Delete">
+        </form>
     </body>
 </html>

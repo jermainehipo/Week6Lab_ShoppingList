@@ -34,24 +34,28 @@ public class ShoppingListServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String username = request.getParameter("username");
         HttpSession session = request.getSession();
-        session.setAttribute("username", username);
+        
+        if (session.getAttribute("username") == null) {
+            String username = request.getParameter("username");
+            session.setAttribute("username", username);
+        }
         request.setAttribute("username", session.getAttribute("username"));
         
         if (session.getAttribute("list") == null) {
-            if (request.getParameter("item") != null || request.getParameter("item") != "") {
-                ArrayList list = new ArrayList();
-                list.add(request.getParameter("item"));
-                session.setAttribute("list", list);
+            if (request.getParameter("itemtoadd") != null || request.getParameter("itemtoadd") != "") {
+                ArrayList<String> list = new ArrayList<String>();
+                list.add(request.getParameter("itemtoadd"));
+                session.setAttribute("items", list);
             }
         } else {
-            ArrayList list = (ArrayList) session.getAttribute("list");
-            list.add(request.getParameter("item"));
-            session.setAttribute("list", list);
+            ArrayList<String> list = (ArrayList<String>) session.getAttribute("list");
+            list.add(request.getParameter("itemtoadd"));
+            session.setAttribute("items", list);
         }
         
         getServletContext().getRequestDispatcher("/WEB-INF/shoppingList.jsp")
                         .forward(request, response);
+        
     }
 }
