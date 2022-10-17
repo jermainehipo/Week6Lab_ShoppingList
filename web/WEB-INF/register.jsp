@@ -3,12 +3,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Shopping List</title>
+        <title>Register</title>
     </head>
     <body>
-        <h1>Shopping List</h1>
-        <form method="post" action="shoppingList">
-            Username: <input type="text" value="${username}">
+        <h1>Register</h1>
+        <form method="post" action="ShoppingList">
+            Username: <input type="text" name="username" value="${username}">
             <input type="submit" value="Register name">
         </form>
     </body>
